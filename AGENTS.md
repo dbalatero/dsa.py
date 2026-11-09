@@ -85,7 +85,9 @@ dsa-python/
 ## Code conventions
 
 - **Python 3.12+**. Use PEP 695 generics: `class LinkedList[T]: ...`
-- **Full type hints** everywhere.
+- **Use type hints where they add clarity.** Keep parameter and generic storage
+  annotations, but allow inferred return types for obvious methods such as
+  `__init__` and `__len__`. Don't flag missing annotations on these methods in reviews.
 - **Idiomatic Python:** implement the relevant dunder methods, such as `__len__`,
   `__iter__`, `__contains__`, `__getitem__`, `__setitem__`, `__delitem__`, `__repr__`,
   and `__eq__`.
