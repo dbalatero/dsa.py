@@ -12,23 +12,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
         with:
-          python-version: '3.12'
-      - run: python -m pip install ruff
-      - run: ruff format --check .
-      - run: ruff check --select I .
+          name: devenv
+      - name: Install devenv
+        run: nix profile add nixpkgs#devenv
+      - run: devenv shell -- ruff format --check .
+      - run: devenv shell -- ruff check --select I .
 
   run-python-files:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: cachix/install-nix-action@v31
+      - uses: cachix/cachix-action@v16
         with:
-          python-version: '3.12'
-      - run: python -m pip install pytest hypothesis
+          name: devenv
+      - name: Install devenv
+        run: nix profile add nixpkgs#devenv
       - name: Run numbered Python files
-        shell: python
+        shell: devenv shell -- python {0}
         run: |
           import re
           import subprocess
