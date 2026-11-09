@@ -1,0 +1,10 @@
+#separator:Semicolon
+#html:false
+#notetype:Basic
+#columns:Front;Back;Tags
+#tags column:3
+What distinguishes size from capacity in a dynamic array?;Size counts stored elements. Capacity counts allocated slots. Only indexes 0 through size - 1 contain elements.;dsa::dynamic_arrays card::invariant
+Why does a dynamic array support O(1) access by index?;Elements occupy consecutive slots, so an index directly identifies a slot without scanning earlier elements.;dsa::dynamic_arrays card::why
+Why is inserting or deleting near the front of a dynamic array O(n)?;The following elements must shift to preserve order and keep occupied slots consecutive.;dsa::dynamic_arrays card::tradeoff
+Why is append O(1) amortized when a dynamic array doubles its capacity?;Resize copies form a geometric sum (4 + 8 + 16 + ...), totaling O(n) across n appends. One resizing append still costs O(n).;dsa::dynamic_arrays card::why
+You need an ordered sequence with frequent indexed access and additions at the end. Which structure fits?;A dynamic array (Python list): O(1) indexed access and O(1) amortized append.;dsa::dynamic_arrays card::recognition

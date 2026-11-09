@@ -162,7 +162,8 @@ Every chapter follows this structure:
 6. **Apply it.** Solve 5–8 problems from the matching NeetCode roadmap category and
    save them in `problems/<structure>/`.
 7. **Mini-project.** Build one small thing in `projects/` (ideas below).
-8. **Make cards.** Write 5–10 Anki cards in `cards/<structure>.csv`.
+8. **Make cards.** Write a small set of core-principle Anki cards in
+   `cards/<structure>.csv`; prioritize review value over a fixed count.
 9. **Benchmark (optional).** Compare against the stdlib analog and note why it's
    faster or slower.
 
@@ -203,7 +204,17 @@ Use Anki for **intuition and pattern recognition, not memorizing code.**
 - **One idea per card.** If the answer needs bullet points, split the card.
 - **Never put a whole solution on a card.** Capture the key insight only.
 - **Write your own cards.** Avoid shared decks.
-- 5–10 cards per structure; 10–15 minutes of review daily.
+- **Minimize review burden.** Cover the core principles, trade-offs, and recognition
+  signals with as few useful cards as possible. No fixed card quota; don't make
+  cards for every method, syntax detail, or minor correction, or repeat one insight
+  across multiple cards.
+
+### Import workflow
+- The human uses one master **DSA** deck and imports each topic as they finish it.
+- Keep a separate, clearly named file per topic (e.g. `cards/dynamic_arrays.csv`).
+- Use topic tags to organize cards within the master deck, not separate topic decks.
+- Make prompts self-contained so cards make sense when topics are mixed in review.
+- Leave deck selection to the human at import time; don't force a topic deck.
 
 ### File format
 Store cards in `cards/<structure>.csv` for Anki import (fields separated by tabs or
