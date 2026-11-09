@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  formatting:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install ruff
+      - run: ruff format --check .
+      - run: ruff check --select I .
+
+  run-python-files:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install pytest hypothesis
+      - name: Run numbered Python files
+        shell: python
+        run: |
+          import re
+          import subprocess
+          import sys
+          from pathlib import Path
+
+          files = sorted(
+              path for path in Path("src").iterdir()
+              if path.is_file() and re.fullmatch(r"\d+_.*\.py", path.name)
+          )
+          if not files:
+              sys.exit("No numbered Python files found in src/")
+
+          failed = []
+          for path in files:
+              print(f"::group::Run {path}", flush=True)
+              result = subprocess.run([sys.executable, str(path)])
+              print("::endgroup::", flush=True)
+              if result.returncode:
+                  failed.append(str(path))
+
+          if failed:
+              sys.exit(f"Failed files: {', '.join(failed)}")

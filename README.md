@@ -13,11 +13,3 @@ lint                            # Ruff lint checks
 typecheck                       # Strict Pyright checks
 check                           # Check formatting, lint, types, and tests
 ```
-
-Keep the implementation and `test_*` functions in the same file. The bottom
-`if __name__ == "__main__"` block runs pytest when you execute the file directly.
-Replace the hello-world function when you're ready to build the dynamic array.
-
-Launch Neovim from this environment to use your existing Ruff and Pyright setup.
-Tool settings live in `pyproject.toml`; versions are pinned in `devenv.lock`.
-The `.envrc` uses the [devenv direnv integration](https://devenv.sh/integrations/direnv/).
